@@ -6,39 +6,45 @@ import Control.Exception (evaluate)
 
 main :: IO ()
 main = hspec $ do
-  describe "obtenerElemento" $ do
-    it "retorna el elemento que esta en la posicion pasada" $ do
-      obtenerElemento 0 [1, 2, 3] `shouldBe` 1
-      obtenerElemento 2 [1, 2, 3, 4, 5] `shouldBe` 3
-    it "falla si se pasa una posicion que no corresponde a ningun elemento de la lista" $ do
-      shouldThrowError (obtenerElemento (-1) [1])
-      shouldThrowError (obtenerElemento 1 [])
-      shouldThrowError (obtenerElemento 2 [1])
+  describe "zippear" $ do
+    it "dadas dos listas vacias devuelve una lista vacia" $ do
+      zippear [] [] `shouldBe` ([] :: [Number])
+    it "dadas dos listas, devuelve una lista de tuplas formadas por los elementos de ambas" $ do
+      zippear [1, 2, 3, 4, 5] "abcde" `shouldBe` [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e')]
+    it "dadas dos listas de diferente tamaño, devuelve una lista de tuplas formadas por los elementos de ambas del tamaño de la mas corta" $ do
+      zippear [1, 2, 3] "abcde" `shouldBe` [(1, 'a'), (2, 'b'), (3, 'c')]
+      zippear [1, 2, 3, 4, 5] "abc" `shouldBe` [(1, 'a'), (2, 'b'), (3, 'c')]
   
-  describe "positivos" $ do
-    it "dada una lista vacia devuelve esa misma lista" $ do
-      positivos [] `shouldBe` ([] :: [Number])
-    it "dada una lista de todos positivos devuelve la misma lista" $ do
-      positivos [1, 2, 3] `shouldBe` [1, 2, 3]
-    it "dada una lista con positivos y ceros, devuelve una lista con solo los positivos" $ do
-      positivos [0, 1, 2, 3] `shouldBe` [1, 2, 3]
-    it "dada una lista con positivos y negativos, devuelve una lista con solo los positivos" $ do
-      positivos [3, -1, 1] `shouldBe` [3, 1]
-  
-  describe "estaOrdenada" $ do
-    it "es verdad para las listas vacias" $ do
-      estaOrdenada ([] :: [Number]) `shouldBe` True
-    it "es verdad para las listas de un elemento" $ do
-      estaOrdenada [1] `shouldBe` True
-    it "es verdad para las listas donde cada elemento es mayor o igual a su anterior" $ do
-      estaOrdenada [1, 1, 2, 3, 3] `shouldBe` True
-    it "es falso para las listas algun elemento es menor a su anterior" $ do
-      estaOrdenada [1, 2, 1] `shouldBe` False
+  describe "ordenado" $ do
+    it "un arbol que es solo una hoja esta ordenado" $ do
+      ordenado Hoja `shouldBe` True
+    it "un arbol que es una rama con dos hojas esta ordenado" $ do
+      ordenado (Rama Hoja 5 Hoja) `shouldBe` True
+    it "un arbol que tiene una rama izquierda esta ordenado si el valor de su rama principal es mayor al de la rama izquierda" $ do
+      ordenado (Rama (Rama Hoja 3 Hoja) 5 Hoja) `shouldBe` True
+    it "un arbol que tiene una rama izquierda NO esta ordenado si el valor de su rama principal es menor al de la rama izquierda" $ do
+      ordenado (Rama (Rama Hoja 5 Hoja) 3 Hoja) `shouldBe` False
+    it "un arbol que tiene una rama derecha esta ordenado si el valor de su rama principal es menor al de la rama derecha" $ do
+      ordenado (Rama Hoja 3 (Rama Hoja 5 Hoja)) `shouldBe` True
+    it "un arbol que tiene una rama derecha NO esta ordenado si el valor de su rama principal es mayor al de la rama derecha" $ do
+      ordenado (Rama Hoja 5 (Rama Hoja 3 Hoja)) `shouldBe` False
+    it "un arbol solo esta ordenado si todos sus subarboles estan ordenados" $ do
+      ordenado (Rama Hoja
+                     1
+                     (Rama (Rama Hoja 3 Hoja)
+                            2
+                           (Rama Hoja 4 Hoja))) `shouldBe` False
 
-  describe "enMayusculas" $ do
-    it "dado un string vacio devuelve un string vacio" $ do
-      enMayusculas "" `shouldBe` ""
-    it "dado un string devuelve el string con todos sus caracteres en mayusculas" $ do
-      enMayusculas "the game" `shouldBe` "THE GAME"
+      ordenado (Rama
+                (Rama (Rama Hoja 2 Hoja)
+                       1
+                      (Rama Hoja 3 Hoja))
+                4 Hoja) `shouldBe` False
 
-shouldThrowError expression = evaluate expression `shouldThrow` anyException
+      ordenado (Rama (Rama (Rama Hoja 1 Hoja)
+                            2
+                           (Rama Hoja 3 Hoja))
+                           4
+                           (Rama (Rama Hoja 5 Hoja)
+                              6
+                           (Rama Hoja 7 Hoja))) `shouldBe` False

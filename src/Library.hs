@@ -1,11 +1,24 @@
 module Library where
 import PdePreludat
-import Data.Char (toUpper)
 
-obtenerElemento = implementame
+-- Desafio 1
 
-positivos = implementame
+zippear = implementame
 
-estaOrdenada = implementame
+-- Desafio 2
 
-enMayusculas = implementame
+data ArbolBinario = Hoja | Rama ArbolBinario Number ArbolBinario deriving Eq
+
+-- Implementado Show para que se pueda mostrar bonito por consola el arbol
+instance Show ArbolBinario where
+  show arbol = init $ unlines (showArbol arbol)
+    where showArbol (Rama ramaIzquierda valor ramaDerecha)
+            = show valor : (showRamas ramaIzquierda ramaDerecha)
+                where
+                    showRamas izquierda derecha =
+                        ((pad "+- " "|  ") (showArbol derecha)) ++ ((pad "`- " "   ") (showArbol izquierda))
+                    pad first rest = zipWith (++) (first : repeat rest)
+          showArbol (Hoja) = []
+
+ordenado :: ArbolBinario -> Bool
+ordenado = implementame
