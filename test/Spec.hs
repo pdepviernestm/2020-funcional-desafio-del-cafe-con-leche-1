@@ -8,7 +8,7 @@ main :: IO ()
 main = hspec $ do
   describe "zippear" $ do
     it "dadas dos listas vacias devuelve una lista vacia" $ do
-      zippear [] [] `shouldBe` ([] :: [Number])
+      zippear [] [] `shouldBe` ([] :: [(Number, Number)])
     it "dadas dos listas, devuelve una lista de tuplas formadas por los elementos de ambas" $ do
       zippear [1, 2, 3, 4, 5] "abcde" `shouldBe` [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e')]
     it "dadas dos listas de diferente tamaño, devuelve una lista de tuplas formadas por los elementos de ambas del tamaño de la mas corta" $ do
