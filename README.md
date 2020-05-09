@@ -12,6 +12,10 @@ En esta primera versión, hay 2 ejercicios, zippear 2 listas y ordenar un árbol
 
 El del árbol binario es bastante más difícil así que la recompensa por ese (sea cual sea) va a ser mayor :D.
 
+# ¿Cómo aviso cuando lo tenga resuelto?
+
+Sobre este repo no tienen permiso de escritura, lo pueden clonar, pero no pueden pushear, así que cuando lleguen a una solución que creen que es correcta, manden mail al profe con su solución (ya sea en código, en un archivo, o idealmente en un repo de github que hayan [forkeado](http://aprendegit.com/fork-de-repositorios-para-que-sirve/) a partir de este).
+
 # Gente que ya los resolvió
 
 ![](https://i.imgur.com/p2FKUPJ.png)
