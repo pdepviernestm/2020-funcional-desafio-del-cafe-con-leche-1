@@ -47,4 +47,4 @@ main = hspec $ do
                            4
                            (Rama (Rama Hoja 5 Hoja)
                               6
-                           (Rama Hoja 7 Hoja))) `shouldBe` False
+                           (Rama Hoja 7 Hoja))) `shouldBe` True
