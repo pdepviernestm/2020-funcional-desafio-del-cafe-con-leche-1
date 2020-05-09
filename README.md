@@ -22,7 +22,7 @@ Sobre este repo no tienen permiso de escritura, lo pueden clonar, pero no pueden
 
 ## Zippear
 
-...
+- Matías Carasi.
 
 ## Arbol binario ordenado
 
