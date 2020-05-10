@@ -23,6 +23,7 @@ Sobre este repo no tienen permiso de escritura, lo pueden clonar, pero no pueden
 ## Zippear
 
 - Matías Carasi.
+- Agustín Orlando.
 
 ## Arbol binario ordenado
 
