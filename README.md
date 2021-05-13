@@ -1,6 +1,6 @@
 # Desafío del café con leche
 
-[https://wiki.uqbar.org/wiki/articles/desafios-cafe-con-leche.html]()
+[https://wiki.uqbar.org/wiki/articles/desafios-cafe-con-leche.html](https://wiki.uqbar.org/wiki/articles/desafios-cafe-con-leche.html)
 
 Estos ejercicios son totalmente opcionales y son más complicados de los que normalmente mandamos como TPs.
 
